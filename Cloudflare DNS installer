@@ -6,18 +6,23 @@ Echo  Press [Any] Key to Install Internet Filter
 Pause>nul
 
 :Cloudflaredns
+::Ethernet
 netsh interface ipv4 set dnsservers "Ethernet" static 1.1.1.3 primary >nul
 netsh interface ipv4 add dnsservers "Ethernet" 1.0.0.3 index=2 >nul
 netsh interface ipv6 set dnsservers "Ethernet" static 2606:4700:4700::1113 primary >nul
 netsh interface ipv6 add dnsservers "Ethernet" 2606:4700:4700::1003 index=2 >nul
+::Wi-fi
+netsh interface ipv4 set dnsservers "Wi-fi" static 1.1.1.3 primary >nul
+netsh interface ipv4 add dnsservers "Wi-fi" 1.0.0.3 index=2 >nul
+netsh interface ipv6 set dnsservers "Wi-fi" static 2606:4700:4700::1113 primary >nul
+netsh interface ipv6 add dnsservers "Wi-fi" 2606:4700:4700::1003 index=2 >nul
 ipconfig /flushdns
 cls
 echo.
 echo  Operation Completed!
 echo  Created by:      Jules Ivan Garay
 echo  DNS Created by:  Cloudflare Family DNS
-echo  Windows version: ver
+echo  Windows version: %ver%
 echo.
 echo  Press [Any] Key to exit
 pause>nul
-exit
